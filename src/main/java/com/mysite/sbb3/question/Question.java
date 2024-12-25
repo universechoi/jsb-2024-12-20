@@ -1,5 +1,6 @@
-package com.mysite.sbb3;
+package com.mysite.sbb3.question;
 
+import com.mysite.sbb3.answer.Answer;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
