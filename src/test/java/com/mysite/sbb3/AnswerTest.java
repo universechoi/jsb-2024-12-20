@@ -7,6 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ActiveProfiles("test")
@@ -31,5 +32,14 @@ public class AnswerTest {
                 .question(q)
                 .build();
         this.answerRepository.save(a);
+    }
+
+    @Test
+    void findConnectedQuestionTest() {
+        Optional<Answer> oa = this.answerRepository.findById(1L);
+        assertTrue(oa.isPresent());
+
+        Answer a = oa.get();
+        assertEquals(2, a.getQuestion().getId());
     }
 }
