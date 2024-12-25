@@ -17,10 +17,12 @@ public class AnswerController {
 
     private final QuestionService questionService;
 
+    private final AnswerService answerService;
+
     @GetMapping("/create/{id}")
     public String create(Model model, @PathVariable("id") Long id, @RequestParam(value = "content") String content) {
         Question question = this.questionService.getQuestion(id);
-        // TODO : 답변 저장
+        this.answerService.create(question, content);
         return String.format("redirect:/question/detail/%s", id);
     }
 }
