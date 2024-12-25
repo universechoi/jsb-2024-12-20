@@ -45,7 +45,7 @@ class Sbb3ApplicationTests {
 
     @Test
     void findByIdTest() {
-        Optional<Question> oq = this.questionRepository.findById(1);
+        Optional<Question> oq = this.questionRepository.findById(1L);
         if(oq.isPresent()) {
             Question q = oq.get();
             assertEquals("sbb가 무엇인가요?", q.getSubject());
@@ -74,7 +74,7 @@ class Sbb3ApplicationTests {
     @Transactional
     @Test
     void modifyTest() {
-        Optional<Question> oq = this.questionRepository.findById(1);
+        Optional<Question> oq = this.questionRepository.findById(1L);
         assertTrue(oq.isPresent());
 
         Question q = oq.get();
@@ -87,7 +87,7 @@ class Sbb3ApplicationTests {
     void deleteTest() {
         assertEquals(2, this.questionRepository.count());
 
-        Optional<Question> oq = this.questionRepository.findById(1);
+        Optional<Question> oq = this.questionRepository.findById(1L);
         assertTrue(oq.isPresent());
 
         Question q = oq.get();
