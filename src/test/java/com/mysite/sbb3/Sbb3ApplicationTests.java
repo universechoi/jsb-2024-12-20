@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,5 +39,14 @@ class Sbb3ApplicationTests {
 
         Question q = all.getFirst();
         assertEquals("sbb가 무엇인가요?", q.getSubject());
+    }
+
+    @Test
+    void findByIdTest() {
+        Optional<Question> oq = this.questionRepository.findById(1);
+        if(oq.isPresent()) {
+            Question q = oq.get();
+            assertEquals("sbb가 무엇인가요?", q.getSubject());
+        }
     }
 }
