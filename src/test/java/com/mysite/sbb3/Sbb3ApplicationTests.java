@@ -3,11 +3,13 @@ package com.mysite.sbb3;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class Sbb3ApplicationTests {
@@ -67,5 +69,16 @@ class Sbb3ApplicationTests {
         List<Question> qList = this.questionRepository.findBySubjectLike("sbb%");
         Question q = qList.getFirst();
         assertEquals("sbb가 무엇인가요?", q.getSubject());
+    }
+
+    @Transactional
+    @Test
+    void modifyTest() {
+        Optional<Question> oq = this.questionRepository.findById(1);
+        assertTrue(oq.isPresent());
+
+        Question q = oq.get();
+        q.setSubject("수정된 제목");
+        this.questionRepository.save(q);
     }
 }
